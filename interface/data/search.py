@@ -35,9 +35,6 @@ def _format_info(store):
     """Checks is the value are valid"""
     store = store.upper()
 
-    if len(store) != 2:
-        raise
-
     if store == '':
         raise
 

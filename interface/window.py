@@ -1,7 +1,6 @@
 from decouple import config
 from pyqode.qt.QtWidgets import QWidget
 from pyqode.qt.QtWidgets import QMainWindow
-from pyqode.qt.QtWidgets import QLineEdit
 from pyqode.qt.QtWidgets import QHBoxLayout
 from pyqode.qt.QtWidgets import QVBoxLayout
 from .create import Create
@@ -54,12 +53,12 @@ class Window(QWidget, Create):
         vbox = QVBoxLayout()
         self.setLayout(vbox)
 
-        for i in range(1, 9):
+        for i in range(1, 15):
             hbox[i] = QHBoxLayout()
             vbox.addLayout(hbox[i], 0)
 
         hbox[1].addWidget(self.create_label('Codigo', width=45))
-        self.info_labels['Codigo'] = QLineEdit()
+        self.info_labels['Codigo'] = self.create_entry()
         hbox[1].addWidget(self.info_labels['Codigo'])
 
         for lb in self.lbs:
@@ -68,9 +67,31 @@ class Window(QWidget, Create):
                 info=True, width=lb[3])
             hbox[lb[0]].addWidget(self.info_labels[lb[1]])
 
-        self.btn_search = self.create_btn('Busca', func=self.search)
+        self.btn_search = self.create_btn('Busca', width=570, func=self.search)
         hbox[7].addWidget(self.btn_search)
 
+        hbox[8].addWidget(self.create_label('Ip1', width=15))
+        hbox[8].addWidget(self.create_label(info=True, width=100))
+        hbox[8].addWidget(self.create_entry(True))
+        hbox[8].addWidget(self.create_btn('SSH', func=self.search))
+        hbox[8].addWidget(self.create_btn('VNC', func=self.search))
+        hbox[8].addWidget(self.create_btn('Box', func=self.search))
+
+        hbox[9].addWidget(self.create_label('Ip2', width=15))
+        hbox[9].addWidget(self.create_label(info=True, width=100))
+        hbox[9].addWidget(self.create_entry(True))
+        hbox[9].addWidget(self.create_btn('SSH', func=self.search))
+        hbox[9].addWidget(self.create_btn('VNC', func=self.search))
+        hbox[9].addWidget(self.create_btn('Box', func=self.search))
+
+        hbox[11].addWidget(self.create_label('Roteador', width=45))
+        hbox[11].addWidget(self.create_label(info=True, width=100))
+        hbox[11].addWidget(self.create_btn('Box', func=self.search))
+        
+        hbox[13].addWidget(self.create_label('SonicWall', width=45))
+        hbox[13].addWidget(self.create_label(info=True, width=100))
+        hbox[13].addWidget(self.create_btn('Box', func=self.search))
+        
 
     def search(self):
         info = search_store(self.info_labels['Codigo'].text())
