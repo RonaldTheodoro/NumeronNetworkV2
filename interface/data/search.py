@@ -15,7 +15,9 @@ DBSession = sessionmaker()
 DBSession.bind = engine
 session = DBSession()
 
+
 def search_store(store):
+    """Check de value and search in db"""
     try:
         store = _format_info(store)
     except:
@@ -27,8 +29,10 @@ def search_store(store):
         return False
 
     return info
+
     
 def _format_info(store):
+    """Checks is the value are valid"""
     store = store.upper()
 
     if len(store) != 2:
@@ -38,4 +42,5 @@ def _format_info(store):
 
 
 def _search(store):
+    """Search store in db"""
     return session.query(Store).filter(Store.code == store).one()

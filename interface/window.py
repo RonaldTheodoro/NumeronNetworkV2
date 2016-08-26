@@ -1,6 +1,7 @@
 from decouple import config
 from pyqode.qt.QtWidgets import QWidget
 from pyqode.qt.QtWidgets import QMainWindow
+from pyqode.qt.QtWidgets import QLineEdit
 from pyqode.qt.QtWidgets import QHBoxLayout
 from pyqode.qt.QtWidgets import QVBoxLayout
 from pyqode.qt.QtWidgets import QPushButton
@@ -27,7 +28,6 @@ class Window(QWidget, Create):
     def __init__(self, parent):
         super(Window, self).__init__(parent)
         self.lbs = (
-            (1, 'Codigo', 45, 20),
             (1, 'Loja', 25, 465),
             (2, 'Ip1', 15, 100),
             (2, 'Ip2', 15, 100),
@@ -59,6 +59,10 @@ class Window(QWidget, Create):
             hbox[i] = QHBoxLayout()
             vbox.addLayout(hbox[i], 0)
 
+        hbox[1].addWidget(self.create_label('Codigo', width=45))
+        self.info_labels['codigo'] = QLineEdit()
+        hbox[1].addWidget(self.info_labels['codigo'])
+
         for lb in self.lbs:
             hbox[lb[0]].addWidget(self.create_label(lb[1], width=lb[2]))
             self.info_labels[lb[1].lower()] = self.create_label(
@@ -70,5 +74,5 @@ class Window(QWidget, Create):
         hbox[7].addWidget(self.btn_search)
 
     def search(self):
-        info = search_store('99')
+        info = search_store(self.info_labels['codigo'].text())
         
