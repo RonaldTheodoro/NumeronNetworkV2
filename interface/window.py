@@ -1,10 +1,10 @@
 from decouple import config
-from pyqode.qt.QtCore import QRect
-from pyqode.qt.QtWidgets import QLabel
 from pyqode.qt.QtWidgets import QWidget
 from pyqode.qt.QtWidgets import QMainWindow
 from pyqode.qt.QtWidgets import QHBoxLayout
 from pyqode.qt.QtWidgets import QVBoxLayout
+from pyqode.qt.QtWidgets import QPushButton
+from .create import Create
 
 
 class MainWindow(QMainWindow):
@@ -13,7 +13,7 @@ class MainWindow(QMainWindow):
 
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
-        self.setWindowTitle('Numeron Network') 
+        self.setWindowTitle('Numeron Network')
         self.setFixedSize(600, 700)
         self.window = Window(self)
         _widget = QWidget()
@@ -22,12 +22,12 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(_widget)
 
 
-class Window(QWidget):
+class Window(QWidget, Create):
     def __init__(self, parent):
         super(Window, self).__init__(parent)
         self.lbs = (
-            (1, 'Codigo', 35, 20),
-            (1, 'Loja', 20, 465),
+            (1, 'Codigo', 45, 20),
+            (1, 'Loja', 25, 465),
             (2, 'Ip1', 15, 100),
             (2, 'Ip2', 15, 100),
             (2, 'Roteador', 45, 100),
@@ -53,23 +53,20 @@ class Window(QWidget):
         hbox = {}
         vbox = QVBoxLayout()
         self.setLayout(vbox)
-        vbox.setGeometry(QRect(10, 10, 10, 10))
 
-        for i in range(1, 7):
+        for i in range(1, 8):
             hbox[i] = QHBoxLayout()
             vbox.addLayout(hbox[i], 0)
-        
+
         for lb in self.lbs:
             hbox[lb[0]].addWidget(self.create_label(lb[1], width=lb[2]))
             self.info_labels[lb[1].lower()] = self.create_label(
                 info=True, width=lb[3])
             hbox[lb[0]].addWidget(self.info_labels[lb[1].lower()])
 
-    def create_label(self, text='', info=False, width=30):
-        label = QLabel(text)
-        label.setFixedWidth(width)
-        label.setFixedHeight(20)
+        self.btn_search = QPushButton('Busca')
+        self.btn_search.clicked.connect(self.search)
+        hbox[7].addWidget(self.btn_search)
 
-        if info:
-            label.setStyleSheet('background-color: white; border: 1px solid;')
-        return label
+    def search(self):
+        print('test')
