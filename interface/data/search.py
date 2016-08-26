@@ -1,6 +1,6 @@
 import os
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, exc
 from .models import Base
 from .models import Store
 
@@ -16,5 +16,26 @@ DBSession.bind = engine
 session = DBSession()
 
 def search_store(store):
-    return session.query(Store).filter(Store.code == store).one()
+    try:
+        store = _format_info(store)
+    except:
+        return None
+
+    try:
+        info = _search(store)
+    except exc.NoResultFound:
+        return False
+
+    return info
     
+def _format_info(store):
+    store = store.upper()
+
+    if len(store) != 2:
+        raise
+
+    return store
+
+
+def _search(store):
+    return session.query(Store).filter(Store.code == store).one()

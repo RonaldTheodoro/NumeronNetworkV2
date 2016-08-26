@@ -5,7 +5,7 @@ from pyqode.qt.QtWidgets import QHBoxLayout
 from pyqode.qt.QtWidgets import QVBoxLayout
 from pyqode.qt.QtWidgets import QPushButton
 from .create import Create
-from .data.search import search
+from .data.search import search_store
 
 
 class MainWindow(QMainWindow):
@@ -70,4 +70,5 @@ class Window(QWidget, Create):
         hbox[7].addWidget(self.btn_search)
 
     def search(self):
-        pass
+        info = search_store('99')
+        
