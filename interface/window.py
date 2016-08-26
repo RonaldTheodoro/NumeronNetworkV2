@@ -4,7 +4,6 @@ from pyqode.qt.QtWidgets import QMainWindow
 from pyqode.qt.QtWidgets import QLineEdit
 from pyqode.qt.QtWidgets import QHBoxLayout
 from pyqode.qt.QtWidgets import QVBoxLayout
-from pyqode.qt.QtWidgets import QPushButton
 from .create import Create
 from .data.search import search_store
 
@@ -55,7 +54,7 @@ class Window(QWidget, Create):
         vbox = QVBoxLayout()
         self.setLayout(vbox)
 
-        for i in range(1, 8):
+        for i in range(1, 9):
             hbox[i] = QHBoxLayout()
             vbox.addLayout(hbox[i], 0)
 
@@ -69,9 +68,9 @@ class Window(QWidget, Create):
                 info=True, width=lb[3])
             hbox[lb[0]].addWidget(self.info_labels[lb[1]])
 
-        self.btn_search = QPushButton('Busca')
-        self.btn_search.clicked.connect(self.search)
+        self.btn_search = self.create_btn('Busca', func=self.search)
         hbox[7].addWidget(self.btn_search)
+
 
     def search(self):
         info = search_store(self.info_labels['Codigo'].text())
