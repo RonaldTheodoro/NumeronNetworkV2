@@ -28,7 +28,7 @@ class Window(QWidget, Create):
     def __init__(self, parent):
         super(Window, self).__init__(parent)
         self.lbs = (
-            (1, 'Loja', 25, 465),
+            (1, 'Loja', 25, 455),
             (2, 'Ip1', 15, 100),
             (2, 'Ip2', 15, 100),
             (2, 'Roteador', 45, 100),
@@ -60,19 +60,39 @@ class Window(QWidget, Create):
             vbox.addLayout(hbox[i], 0)
 
         hbox[1].addWidget(self.create_label('Codigo', width=45))
-        self.info_labels['codigo'] = QLineEdit()
-        hbox[1].addWidget(self.info_labels['codigo'])
+        self.info_labels['Codigo'] = QLineEdit()
+        hbox[1].addWidget(self.info_labels['Codigo'])
 
         for lb in self.lbs:
             hbox[lb[0]].addWidget(self.create_label(lb[1], width=lb[2]))
-            self.info_labels[lb[1].lower()] = self.create_label(
+            self.info_labels[lb[1]] = self.create_label(
                 info=True, width=lb[3])
-            hbox[lb[0]].addWidget(self.info_labels[lb[1].lower()])
+            hbox[lb[0]].addWidget(self.info_labels[lb[1]])
 
         self.btn_search = QPushButton('Busca')
         self.btn_search.clicked.connect(self.search)
         hbox[7].addWidget(self.btn_search)
 
     def search(self):
-        info = search_store(self.info_labels['codigo'].text())
-        
+        info = search_store(self.info_labels['Codigo'].text())
+        if info:
+            self.set_data(info)
+
+    def set_data(self, info):
+        self.info_labels['Loja'].setText(info.store)
+        self.info_labels['Ip1'].setText(info.ip1)
+        self.info_labels['Ip2'].setText(info.ip2)
+        self.info_labels['Roteador'].setText(info.router)
+        self.info_labels['SonicWall'].setText(info.sonicwall)
+        self.info_labels['Ramal'].setText(info.ramal)
+        self.info_labels['Telefone'].setText(info.phone)
+        self.info_labels['Grife'].setText(info.label)
+        self.info_labels['Tipo'].setText(info.local)
+        self.info_labels['CEP'].setText(info.cep)
+        self.info_labels['Designação'].setText(info.desigination)
+        self.info_labels['CNPJ'].setText(info.cnpj)
+        self.info_labels['Inscrição estadual'].setText(info.ie)
+        self.info_labels['Supervisor'].setText(info.supervisor)
+        self.info_labels['UF'].setText(info.uf)
+        self.info_labels['Cidade'].setText(info.city)
+        self.info_labels['Endereço'].setText(info.address)

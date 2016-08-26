@@ -38,6 +38,9 @@ def _format_info(store):
     if len(store) != 2:
         raise
 
+    if store == '':
+        raise
+
     return store
 
 
