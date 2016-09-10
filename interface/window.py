@@ -58,7 +58,7 @@ class Window(QWidget, Create, Search):
         vbox = QVBoxLayout()
         self.setLayout(vbox)
 
-        for i in range(1, 15):
+        for i in range(1, 16):
             hbox[i] = QHBoxLayout()
             vbox.addLayout(hbox[i], 0)
 
@@ -86,6 +86,11 @@ class Window(QWidget, Create, Search):
         for line in (8, 10, 12, 14):
             hbox[line].addWidget(self.create_btn('Box', func=self.search))
         
+        hbox[9].addWidget(self.create_term())
+        hbox[11].addWidget(self.create_term())
+        hbox[13].addWidget(self.create_term())
+        hbox[15].addWidget(self.create_term())
+
 
     def search(self):
         info = self.search_store(self.info_labels['Codigo'].text())

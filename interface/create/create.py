@@ -4,6 +4,7 @@ from pyqode.qt.QtWidgets import QLabel
 from pyqode.qt.QtWidgets import QLineEdit
 from pyqode.qt.QtWidgets import QPushButton
 from pyqode.qt.QtWidgets import QMessageBox
+from pyqode.core.widgets import OutputWindow
 
 
 class Create:
@@ -41,3 +42,7 @@ class Create:
         msg.setText('Loja não encontrada')
         msg.setStandardButtons(QMessageBox.Ok)
         msg.exec_()
+
+    def create_term(self):
+        term = OutputWindow()
+        return term
