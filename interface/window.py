@@ -77,26 +77,29 @@ class Window(QWidget, Create):
         hbox[8].addWidget(self.create_btn('VNC', func=self.search))
         hbox[8].addWidget(self.create_btn('Box', func=self.search))
 
-        hbox[9].addWidget(self.create_label('Ip2', width=15))
-        hbox[9].addWidget(self.create_label(info=True, width=100))
-        hbox[9].addWidget(self.create_entry(True))
-        hbox[9].addWidget(self.create_btn('SSH', func=self.search))
-        hbox[9].addWidget(self.create_btn('VNC', func=self.search))
-        hbox[9].addWidget(self.create_btn('Box', func=self.search))
+        hbox[10].addWidget(self.create_label('Ip2', width=15))
+        hbox[10].addWidget(self.create_label(info=True, width=100))
+        hbox[10].addWidget(self.create_entry(True))
+        hbox[10].addWidget(self.create_btn('SSH', func=self.search))
+        hbox[10].addWidget(self.create_btn('VNC', func=self.search))
+        hbox[10].addWidget(self.create_btn('Box', func=self.search))
 
-        hbox[11].addWidget(self.create_label('Roteador', width=45))
-        hbox[11].addWidget(self.create_label(info=True, width=100))
-        hbox[11].addWidget(self.create_btn('Box', func=self.search))
+        hbox[12].addWidget(self.create_label('Roteador', width=45))
+        hbox[12].addWidget(self.create_label(info=True, width=100))
+        hbox[12].addWidget(self.create_btn('Box', func=self.search))
         
-        hbox[13].addWidget(self.create_label('SonicWall', width=45))
-        hbox[13].addWidget(self.create_label(info=True, width=100))
-        hbox[13].addWidget(self.create_btn('Box', func=self.search))
+        hbox[14].addWidget(self.create_label('SonicWall', width=45))
+        hbox[14].addWidget(self.create_label(info=True, width=100))
+        hbox[14].addWidget(self.create_btn('Box', func=self.search))
         
 
     def search(self):
         info = search_store(self.info_labels['Codigo'].text())
         if info:
             self.set_data(info)
+        
+        else:
+            self.show_msg()
 
     def set_data(self, info):
         self.info_labels['Loja'].setText(info.store)

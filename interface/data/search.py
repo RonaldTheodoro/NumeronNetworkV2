@@ -1,6 +1,8 @@
+import re
 import os
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, exc
+from sqlalchemy.orm import exc
+from sqlalchemy.orm import sessionmaker
 from .models import Base
 from .models import Store
 
@@ -19,26 +21,11 @@ session = DBSession()
 def search_store(store):
     """Check de value and search in db"""
     try:
-        store = _format_info(store)
-    except:
-        return None
-
-    try:
-        info = _search(store)
+        info = _search(store.upper())
     except exc.NoResultFound:
         return False
 
     return info
-
-    
-def _format_info(store):
-    """Checks is the value are valid"""
-    store = store.upper()
-
-    if store == '':
-        raise
-
-    return store
 
 
 def _search(store):

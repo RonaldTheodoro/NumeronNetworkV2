@@ -3,6 +3,7 @@ from pyqode.qt.QtGui import QRegExpValidator
 from pyqode.qt.QtWidgets import QLabel
 from pyqode.qt.QtWidgets import QLineEdit
 from pyqode.qt.QtWidgets import QPushButton
+from pyqode.qt.QtWidgets import QMessageBox
 
 
 class Create:
@@ -25,12 +26,18 @@ class Create:
     def create_entry(self, term=False):
         entry = QLineEdit()
         entry.setFixedWidth(30)
-
+        
         if term:
-            regexp = '^([0-9]{2})$'
+            regexp = r'^([0-9]{2})$'
         else:
-            regexp = '^([a-zA-Z0-9]{2})$'
-
-        validator = QRegExpValidator(QRegExp(regexp))
-        entry.setValidator(validator)
+            regexp = r'^([a-zA-Z0-9]{2})$'
+ 
+        entry.setValidator(QRegExpValidator(QRegExp(regexp)))
         return entry
+
+    def show_msg(self):
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Information)
+        msg.setText('Loja não encontrada')
+        msg.setStandardButtons(QMessageBox.Ok)
+        msg.exec_()
