@@ -1,3 +1,5 @@
+import os
+import sys
 from pyqode.qt.QtCore import QRegExp
 from pyqode.qt.QtGui import QRegExpValidator
 from pyqode.qt.QtWidgets import QLabel
@@ -6,6 +8,8 @@ from pyqode.qt.QtWidgets import QPushButton
 from pyqode.qt.QtWidgets import QMessageBox
 from pyqode.core.widgets import OutputWindow
 
+
+BASE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'snippets')
 
 class Create:
     
@@ -46,3 +50,14 @@ class Create:
     def create_term(self):
         term = OutputWindow()
         return term
+
+    def start_ping(self, term, ip=None):
+        term.stop_process()
+        if ip is not None:
+            term.start_process(
+                sys.executable, 
+                [os.path.join(BASE_DIR, 'ping_test.py'), '-ip', ip]
+            )
+        else:
+            term.start_process(
+                sys.executable, [os.path.join(BASE_DIR, 'ping_test.py')])
