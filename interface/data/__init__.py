@@ -1,3 +1,4 @@
-from .models import Store, Base
+from .search import Search
 
-__all__ = ['Store', 'Base']
+
+__all__ = ['Search']

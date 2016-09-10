@@ -3,8 +3,8 @@ from pyqode.qt.QtWidgets import QWidget
 from pyqode.qt.QtWidgets import QMainWindow
 from pyqode.qt.QtWidgets import QHBoxLayout
 from pyqode.qt.QtWidgets import QVBoxLayout
+from .data import Search
 from .create import Create
-from .data.search import Search
 
 
 class MainWindow(QMainWindow):
