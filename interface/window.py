@@ -4,7 +4,7 @@ from pyqode.qt.QtWidgets import QMainWindow
 from pyqode.qt.QtWidgets import QHBoxLayout
 from pyqode.qt.QtWidgets import QVBoxLayout
 from .create import Create
-from .data.search import search_store
+from .data.search import Search
 
 
 class MainWindow(QMainWindow):
@@ -22,7 +22,7 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(_widget)
 
 
-class Window(QWidget, Create):
+class Window(QWidget, Create, Search):
     def __init__(self, parent):
         super(Window, self).__init__(parent)
         self.lbs = (
@@ -94,7 +94,7 @@ class Window(QWidget, Create):
         
 
     def search(self):
-        info = search_store(self.info_labels['Codigo'].text())
+        info = self.search_store(self.info_labels['Codigo'].text())
         if info:
             self.set_data(info)
         
