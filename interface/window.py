@@ -42,7 +42,11 @@ class Window(QWidget, Create, Search):
             (5, 'Supervisor', 60, 200),
             (5, 'UF', 20, 20),
             (5, 'Cidade', 40, 200),
-            (6, 'Endereço', 60, 500)
+            (6, 'Endereço', 60, 500),
+            (8, 'IP1', 15, 100),
+            (10, 'IP2', 15, 100),
+            (12, 'ROTEADOR', 45, 100),
+            (14, 'SONICWALL', 45, 100),
         )
         self.info_labels = {}
         self.init_ui()
@@ -69,27 +73,19 @@ class Window(QWidget, Create, Search):
 
         self.btn_search = self.create_btn('Busca', width=570, func=self.search)
         hbox[7].addWidget(self.btn_search)
-
-        hbox[8].addWidget(self.create_label('Ip1', width=15))
-        hbox[8].addWidget(self.create_label(info=True, width=100))
+        
         hbox[8].addWidget(self.create_entry(True))
         hbox[8].addWidget(self.create_btn('SSH', func=self.search))
         hbox[8].addWidget(self.create_btn('VNC', func=self.search))
         hbox[8].addWidget(self.create_btn('Box', func=self.search))
 
-        hbox[10].addWidget(self.create_label('Ip2', width=15))
-        hbox[10].addWidget(self.create_label(info=True, width=100))
         hbox[10].addWidget(self.create_entry(True))
         hbox[10].addWidget(self.create_btn('SSH', func=self.search))
         hbox[10].addWidget(self.create_btn('VNC', func=self.search))
         hbox[10].addWidget(self.create_btn('Box', func=self.search))
 
-        hbox[12].addWidget(self.create_label('Roteador', width=45))
-        hbox[12].addWidget(self.create_label(info=True, width=100))
         hbox[12].addWidget(self.create_btn('Box', func=self.search))
         
-        hbox[14].addWidget(self.create_label('SonicWall', width=45))
-        hbox[14].addWidget(self.create_label(info=True, width=100))
         hbox[14].addWidget(self.create_btn('Box', func=self.search))
         
 
