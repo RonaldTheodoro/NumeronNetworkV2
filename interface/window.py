@@ -49,6 +49,7 @@ class Window(QWidget, Create, Search):
             (14, 'SONICWALL', 45, 100),
         )
         self.info_labels = {}
+        self.entry = {}
         self.init_ui()
         self.show()
 
@@ -74,12 +75,14 @@ class Window(QWidget, Create, Search):
         self.btn_search = self.create_btn('Busca', width=570, func=self.search)
         hbox[7].addWidget(self.btn_search)
         
-        hbox[8].addWidget(self.create_entry(True))
+        self.entry['IP1'] = self.create_entry(True)
+        hbox[8].addWidget(self.entry['IP1'])
         hbox[8].addWidget(self.create_btn('SSH', func=self.search))
         hbox[8].addWidget(self.create_btn('VNC', func=self.search))
         hbox[8].addWidget(self.create_btn('Box', func=self.search))
 
-        hbox[10].addWidget(self.create_entry(True))
+        self.entry['IP2'] = self.create_entry(True)
+        hbox[10].addWidget(self.entry['IP2'])
         hbox[10].addWidget(self.create_btn('SSH', func=self.search))
         hbox[10].addWidget(self.create_btn('VNC', func=self.search))
         hbox[10].addWidget(self.create_btn('Box', func=self.search))
