@@ -21,13 +21,7 @@ session = DBSession()
 def search_store(store):
     """Check de value and search in db"""
     try:
-        info = _search(store.upper())
+        return session.query(Store).filter(Store.code == store.upper()).one()
     except exc.NoResultFound:
         return False
-
-    return info
-
-
-def _search(store):
-    """Search store in db"""
-    return session.query(Store).filter(Store.code == store).one()
+        
