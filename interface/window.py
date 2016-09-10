@@ -75,16 +75,16 @@ class Window(QWidget, Create, Search):
         self.btn_search = self.create_btn('Busca', width=570, func=self.search)
         hbox[7].addWidget(self.btn_search)
         
-        self.entry['IP1'] = self.create_entry(True)
-        hbox[8].addWidget(self.entry['IP1'])
+        for name in (('IP1', 8), ('IP2', 10)):
+            self.entry[name[0]] = self.create_entry(True)
+            hbox[name[1]].addWidget(self.entry[name[0]])
+
         hbox[8].addWidget(self.create_btn('SSH', func=self.search))
         hbox[8].addWidget(self.create_btn('VNC', func=self.search))
 
-        self.entry['IP2'] = self.create_entry(True)
-        hbox[10].addWidget(self.entry['IP2'])
         hbox[10].addWidget(self.create_btn('SSH', func=self.search))
         hbox[10].addWidget(self.create_btn('VNC', func=self.search))
-
+        
         for line in (8, 10, 12, 14):
             hbox[line].addWidget(self.create_btn('Box', func=self.search))
         
