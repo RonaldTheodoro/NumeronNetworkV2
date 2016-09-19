@@ -98,7 +98,6 @@ class Window(QWidget, Create, Search):
             self.box[box[0]] = self.create_term()
             hbox[box[1]].addWidget(self.box[box[0]])
 
-
     def search(self):
         """Search store"""
         info = self.search_store(self.info_labels['Codigo'].text())
