@@ -48,8 +48,7 @@ class Create:
         msg.exec_()
 
     def create_term(self):
-        term = OutputWindow()
-        return term
+        return OutputWindow()
 
     def start_ping(self, term, ip=None):
         term.stop_process()

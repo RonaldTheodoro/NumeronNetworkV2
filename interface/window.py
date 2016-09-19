@@ -31,8 +31,8 @@ class Window(QWidget, Create, Search):
             (2, 'Ip1', 15, 100),
             (2, 'Ip2', 15, 100),
             (2, 'Roteador', 45, 100),
-            (2, 'SonicWall', 45, 100),
-            (3, 'Ramal', 35, 30),
+            (2, 'SonicWall', 45, 110),
+            (3, 'Ramal', 35, 35),
             (3, 'Telefone', 50, 85),
             (3, 'Grife', 30, 100),
             (3, 'Tipo', 25, 60),
@@ -56,6 +56,7 @@ class Window(QWidget, Create, Search):
         self.show()
 
     def init_ui(self):
+        """Initialize the gui"""
         # Define layout
         hbox = {}
         vbox = QVBoxLayout()
@@ -87,14 +88,10 @@ class Window(QWidget, Create, Search):
             self.entry[name[0]] = self.create_entry(True)
             hbox[name[1]].addWidget(self.entry[name[0]])
 
-        # Create SSh and VNC buttons
+        # Create SSH and VNC buttons
         for name in (8, 10):
             hbox[name].addWidget(self.create_btn('SSH', func=self.search))
             hbox[name].addWidget(self.create_btn('VNC', func=self.search))
-        
-        # Create box button
-        for line in (8, 10, 12, 14):
-            hbox[line].addWidget(self.create_btn('Box', func=self.search))
         
         # Create ping box
         for box in (('ip1', 9), ('ip2', 11), ('router', 13), ('sw', 15)):
@@ -103,6 +100,7 @@ class Window(QWidget, Create, Search):
 
 
     def search(self):
+        """Search store"""
         info = self.search_store(self.info_labels['Codigo'].text())
         if info:
             self.set_data(info)
@@ -112,7 +110,7 @@ class Window(QWidget, Create, Search):
 
             if info.sonicwall != '0.0.0.0':
                 self.start_ping(self.box['sw'], info.sonicwall)
-                
+
             else:
                 self.start_ping(self.box['sw'])
         else:
@@ -120,6 +118,7 @@ class Window(QWidget, Create, Search):
 
 
     def set_data(self, info):
+        """Set date in labels"""
         self.info_labels['Loja'].setText(info.store)
         self.info_labels['Ip1'].setText(info.ip1)
         self.info_labels['Ip2'].setText(info.ip2)
